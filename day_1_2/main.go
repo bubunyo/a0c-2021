@@ -15,7 +15,7 @@ func main() {
 	}
 	defer file.Close()
 
-	depth, i, count, prevV := 3, 0, 0, -1
+	depth, i, count, prevV := 3, 0, 0, 0
 	skip := true
 	prev, curr := newQ(depth), newQ(depth)
 
@@ -35,17 +35,8 @@ func main() {
 		prev.push(prevV)
 		prevV = n
 		curr.push(n)
-		//fmt.Print(">>", prev.data, curr.data)
-		if i >= depth {
-			//fmt.Print("<<<<< calc ", prev.sum(), curr.sum())
-			if prev.sum() < curr.sum() {
-				//fmt.Println("inc")
-				count++
-			} else {
-				//fmt.Println()
-			}
-		} else {
-			//fmt.Println()
+		if i >= depth && prev.sum() < curr.sum() {
+			count++
 		}
 		i++
 	}
